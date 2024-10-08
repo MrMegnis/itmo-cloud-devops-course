@@ -1,9 +1,9 @@
 FROM python:3.11-bookworm
 #add concrete version
 
-COPY ../requirements.txt requirements.txt
+RUN --mount=type=bind,source=/model_api/requirements.txt,target=/tmp/requirements.txt \
+    pip install --requirement /tmp/requirements.txt
 
-RUN pip install -r requirements.txt
 #use temporarily added requirements.txt instad of copy it
 
 COPY ../model_api/ .
