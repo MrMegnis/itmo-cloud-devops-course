@@ -7,24 +7,16 @@ app = Flask(__name__)
 
 # Loading model for question answering
 warning("Start model loading")
-model = HuggingFaceQAModel(model_name="Megnis/bert-finetuned-sbersquad")
+# model = HuggingFaceQAModel(model_name="Megnis/bert-finetuned-sbersquad")
+# comment because to long to load in lab
 warning("End model loading")
 warning(os.path.dirname(os.path.abspath(__file__)))
+warning("some env stuff:" + os.getenv("envStuff"))
 
 
-@app.route('/', methods=['GET', 'POST'])
-def index():
-    if request.method == 'POST':
-        context = request.form.get('context', '')
-        question = request.form.get('question', '')
-
-        # get answer from model
-        response = model.generate(context=context, question=question)
-
-        # return answer in JSON format
-        return render_template('index.html', context=context, question=question, answer=response)
-    else:
-        return render_template('index.html')
+@app.route('/api', methods=['GET'])
+def api():
+    return jsonify({'answer': "api is working"})
 
 
 @app.route('/api/get_answer', methods=['POST'])
@@ -33,10 +25,12 @@ def get_answer():
     question = request.form['question']
 
     # get answer from model
-    response = model.generate(context=context, question=question)
+    # response = model.generate(context=context, question=question)
+    response = "response"  # comment upper code for testing
 
     # return answer in JSON format
     return jsonify({'context': context, 'question': question, 'answer': response})
+
 
 @app.route('/api/get_model_answer', methods=['POST'])
 def get_model_answer():
@@ -44,7 +38,8 @@ def get_model_answer():
     question = request.form['question']
 
     # get answer from model
-    response = model._get_model_answer(context=context, question=question)
+    # response = model._get_model_answer(context=context, question=question)
+    response = "response"  # comment upper code for testing
 
     # return answer in JSON format
     return jsonify({'context': context, 'question': question, 'model_answer': response})

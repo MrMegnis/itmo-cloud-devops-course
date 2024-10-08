@@ -1,10 +1,10 @@
-FROM python:3.11-bookworm
-#add concrete version
+FROM python:latest
+#bad-practice use latest version
 
 COPY ../requirements.txt requirements.txt
 
 RUN pip install -r requirements.txt
-#use temporarily added requirements.txt instad of copy it
+#bad-practice we can use requirements temporary
 
 COPY ../model_api/ .
 

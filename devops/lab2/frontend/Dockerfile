@@ -1,11 +1,9 @@
 FROM python:3.11-bookworm
-#add concrete version
 
 COPY ../requirements.txt requirements.txt
 
 RUN pip install -r requirements.txt
-#use temporarily added requirements.txt instad of copy it
 
-COPY ../model_api/ .
+COPY ../frontend/ .
 
 CMD ["python", "main.py"]

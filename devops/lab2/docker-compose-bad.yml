@@ -1,0 +1,21 @@
+services:
+  api:
+    ports:
+      - "5000:5001"
+    build:
+      context: ./
+      dockerfile: ./model_api/Dockerfile
+    environment:
+      envStuff: "Some envStuff"
+      #bad-practice, we can use .env file
+  frontend:
+    environment:
+      TOKEN: "Some secret"
+      #bad-practice, we expose token
+      some_frequently_changing_env: "changing too frequently"
+      #bad-practice, we can use interpolation to change variables
+    ports:
+      - "5000:5002"
+    build:
+      context: ./
+      dockerfile: ./frontend/Dockerfile
