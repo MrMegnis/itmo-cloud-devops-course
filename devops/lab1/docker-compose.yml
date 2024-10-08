@@ -1,0 +1,30 @@
+networks:
+  main:
+
+services:
+  nginx:
+    image: nginx:stable-alpine
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - './nginx.conf:/etc/nginx/nginx.conf'
+      - './webservice1/frontend:/var/www/frontend1'
+      - './webservice2/frontend:/var/www/frontend2'
+      - './ssl:/etc/ssl'
+    depends_on:
+      - backend1
+      - backend2
+    networks:
+      - main
+
+  backend1:
+    build:
+      context: ./webservice1/backend
+    networks:
+      - main
+  backend2:
+    build:
+      context: ./webservice2/backend
+    networks:
+      - main
