@@ -1,0 +1,6 @@
+.md
+.env
+frontend/secret_token.txt
+requirements.txt
+frontend/requirements.txt
+model_api/requirements.txt

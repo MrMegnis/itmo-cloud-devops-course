@@ -1,0 +1,35 @@
+services:
+  api:
+    ports:
+      - "5001:5000"
+    build:
+      context: ./
+      dockerfile: ./model_api/Dockerfile
+    environment:
+      envStuff: ${ENV_STUFF}
+      # add loading from .env file
+    networks:
+      - api-net
+
+  frontend:
+    secrets:
+      - TOKEN
+      # add secrets
+    environment:
+      some_frequently_changing_env: ${SOME_FREQUENTLY_CHANGING_ENV}
+      # add interpolation
+    ports:
+      - "5002:5000"
+    build:
+      context: ./
+      dockerfile: ./frontend/Dockerfile
+    networks:
+      - frontend-net
+
+secrets:
+  TOKEN:
+    file: ./frontend/secret_token.txt
+
+networks:
+  frontend-net:
+  api-net:
