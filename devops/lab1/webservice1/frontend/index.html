@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Список вещей1111</title>
+  <style>
+    body {
+      font-family: sans-serif;
+      margin: 0;
+      padding: 20px;
+    }
+
+    h1 {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    #list-container {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .item {
+      background-color: #f0f0f0;
+      padding: 10px;
+      border-radius: 5px;
+    }
+
+    form {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    input[type="text"] {
+      padding: 8px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+
+    button {
+      background-color: #4CAF50;
+      color: white;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Список вещей1111</h1>
+
+  <div id="list-container"></div>
+
+  <h2>Добавить вещь</h2>
+  <form id="add-item-form">
+    <label for="item-name">Название:</label>
+    <input type="text" id="item-name" name="item-name">
+    <button type="submit">Добавить</button>
+  </form>
+
+  <script>
+    const listContainer = document.getElementById('list-container');
+    const addItemForm = document.getElementById('add-item-form');
+
+    // Получение списка вещей
+    fetch('http://project/api')
+      .then(response => response.json())
+      .then(data => {
+        displayItems(data);
+      })
+      .catch(error => console.error(error));
+
+    // Отображение списка вещей
+    function displayItems(items) {
+      listContainer.innerHTML = '';
+      items.forEach(item => {
+        const itemElement = document.createElement('div');
+        itemElement.classList.add('item');
+        itemElement.textContent = item.name;
+        listContainer.appendChild(itemElement);
+      });
+    }
+
+    // Добавление новой вещи
+    addItemForm.addEventListener('submit', (event) => {
+      event.preventDefault();
+      const itemName = document.getElementById('item-name').value;
+      const newObject = { name: itemName };
+
+      fetch('http://project/api', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(newObject)
+      })
+        .then(response => response.json())
+        .then(data => {
+          displayItems(data); // Обновляем список после добавления
+          addItemForm.reset(); // Очищаем форму
+        })
+        .catch(error => console.error(error));
+    });
+  </script>
+
+</body>
+</html>
