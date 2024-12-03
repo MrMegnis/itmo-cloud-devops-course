@@ -1,5 +1,7 @@
+import sys
+sys.path.append("devops/lab3/web")
 import unittest
-from ..web.app import app
+from devops.lab3.web.app import app
 
 
 class FlaskAppTests(unittest.TestCase):
