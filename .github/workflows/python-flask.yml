@@ -35,10 +35,12 @@ jobs:
     steps:
       - name: Login
         run: echo ${{ secrets.DOCKER_PWD }} | docker login -u ${{ secrets.DOCKER_LOGIN }} --password-stdin
+      - name: Debug GitHub ref
+        run: echo ${GITHUB_REF}
 
       - uses: actions/checkout@main
       - name: Build
-        run: docker build -t ${{ secrets.DOCKER_LOGIN }}/${{ secrets.DOCKER_NAME }}:${GITHUB_REF:11} -f Dockerfile .
+        run: docker build -t $LOGIN/$NAME:${GITHUB_REF:11} -f Dockerfile .
 
       - name: Push
-        run: docker push ${{ secrets.DOCKER_LOGIN }}/${{ secrets.DOCKER_NAME }}:${GITHUB_REF:11}
+        run: docker push $LOGIN/$NAME:${GITHUB_REF:11}
