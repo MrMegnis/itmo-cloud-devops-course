@@ -4,11 +4,11 @@ After=docker.service
 Requires=docker.service
 
 [Service]
-ExecStart=/usr/bin/python3 /path/to/your/app.py
+ExecStart=/usr/bin/python3 /snap/ci-cd-docker-pull/main.py
 Restart=always
-User=your_user
+User=root
 Environment=CI_TOKEN=Aboba
-WorkingDirectory=/path/to/your/app
+WorkingDirectory=/snap/ci-cd-docker-pull
 StandardOutput=append:/var/log/docker_flask_app.log
 StandardError=append:/var/log/docker_flask_app_error.log
 
