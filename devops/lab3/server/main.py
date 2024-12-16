@@ -139,6 +139,10 @@ def MainHandler():
         result, status = deploy_new_container(image_name, container_name, ports)
         return jsonify(result), status
 
+@app.route('/hello', methods=['GET'])
+def hello():
+    return "Hi!"
+
 def main():
     init_logging()
     if not MY_AUTH_TOKEN:

@@ -53,4 +53,4 @@ jobs:
       - name: Set Tag
         run: echo "TAG=$(echo ${GITHUB_REF:11})" >> $GITHUB_ENV
       - name: Send webhook for deploy
-        run: "curl --silent --show-error --fail -X POST ${{ secrets.DEPLOYMENT_SERVER }} -H 'Authorization: ${{ secrets.DEPLOYMENT_TOKEN }}' -H 'Content-Type: application/json' -d '{\"owner\": \"${{ secrets.DOCKER_LOGIN }}\", \"repository\": \"${{ secrets.DOCKER_NAME }}\", \"tag\": \"${{ env.TAG }}\", \"ports\": {\"5000\": 5000}}'"
+        run: "curl --silent --show-error --fail -X POST ${{ secrets.DEPLOYMENT_SERVER }} -H 'Authorization: ${{ secrets.DEPLOYMENT_TOKEN }}' -H 'Content-Type: application/json' -d '{\"owner\": \"${{ secrets.DOCKER_LOGIN }}\", \"repository\": \"${{ secrets.DOCKER_NAME }}\", \"tag\": \"${{ env.TAG }}\", \"ports\": {\"8000\": 8000}}'"
