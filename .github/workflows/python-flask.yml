@@ -35,11 +35,21 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v3
 
-      - name: Set up Doppler
-        uses: dopplerhq/doppler-action@v1.8.0
-        with:
-          token: ${{ secrets.DOPPLER_TOKEN }}
-          config: "devops_lab3/Development"
+      - name: Install Doppler CLI
+        run: |
+          curl -Ls https://cli.doppler.com/install.sh | sh
+
+      - name: Authenticate with Doppler
+        run: doppler login --token ${{ secrets.DOPPLER_TOKEN }}
+
+      - name: Export secrets from Doppler
+        run: doppler secrets download --format env --no-file > .env
+
+      - name: Load secrets into environment
+        run: |
+          set -a
+          source .env
+          set +a
 
       - name: Login
         run: echo "${DOCKER_PWD}" | docker login -u "${DOCKER_LOGIN}" --password-stdin
@@ -59,11 +69,21 @@ jobs:
       - name: Set Tag
         run: echo "TAG=$(echo ${GITHUB_REF:11})" >> $GITHUB_ENV
 
-      - name: Set up Doppler
-        uses: dopplerhq/doppler-action@v1.8.0
-        with:
-          token: ${{ secrets.DOPPLER_TOKEN }}
-          config: "devops_lab3/Development"
+      - name: Install Doppler CLI
+        run: |
+          curl -Ls https://cli.doppler.com/install.sh | sh
+
+      - name: Authenticate with Doppler
+        run: doppler login --token ${{ secrets.DOPPLER_TOKEN }}
+
+      - name: Export secrets from Doppler
+        run: doppler secrets download --format env --no-file > .env
+
+      - name: Load secrets into environment
+        run: |
+          set -a
+          source .env
+          set +a
 
       - name: Send webhook for deploy
         run: |
