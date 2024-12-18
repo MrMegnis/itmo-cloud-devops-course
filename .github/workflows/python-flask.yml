@@ -40,7 +40,7 @@ jobs:
           curl -Ls https://cli.doppler.com/install.sh | sudo sh
 
       - name: Authenticate with Doppler
-        run: doppler login --token ${{ secrets.DOPPLER_TOKEN }}
+        run: doppler setup ci --token ${{ secrets.DOPPLER_TOKEN }}
 
       - name: Export secrets from Doppler
         run: doppler secrets download --format env --no-file > .env
@@ -74,7 +74,7 @@ jobs:
           curl -Ls https://cli.doppler.com/install.sh | sudo sh
 
       - name: Authenticate with Doppler
-        run: doppler login --token ${{ secrets.DOPPLER_TOKEN }}
+        run: doppler setup ci --token ${{ secrets.DOPPLER_TOKEN }}
 
       - name: Export secrets from Doppler
         run: doppler secrets download --format env --no-file > .env
