@@ -85,13 +85,17 @@ jobs:
         run: |
           export VAULT_ADDR=${{ secrets.VAULT_SERVER }}
           DEPLOYMENT_SERVER=$(vault kv get -field=DEPLOYMENT_SERVER kv/lab3-secret)
+          DEPLOYMENT_TOKEN=$(vault kv get -field=DEPLOYMENT_TOKEN kv/lab3-secret)
           DOCKER_LOGIN=$(vault kv get -field=DOCKER_LOGIN kv/lab3-secret)
           DOCKER_NAME=$(vault kv get -field=DOCKER_NAME kv/lab3-secret)
           DOCKER_PWD=$(vault kv get -field=DOCKER_PWD kv/lab3-secret)
           echo "DEPLOYMENT_SERVER=$DEPLOYMENT_SERVER" >> $GITHUB_ENV
+          echo "DEPLOYMENT_TOKEN=DEPLOYMENT_TOKEN" >> $GITHUB_ENV
           echo "DOCKER_LOGIN=$DOCKER_LOGIN" >> $GITHUB_ENV
           echo "DOCKER_NAME=$DOCKER_NAME" >> $GITHUB_ENV
           echo "DOCKER_PWD=$DOCKER_PWD" >> $GITHUB_ENV
+          echo "::add-mask::DEPLOYMENT_SERVER"
+          echo "::add-mask::DEPLOYMENT_TOKEN"
           echo "::add-mask::$DOCKER_LOGIN"
           echo "::add-mask::$DOCKER_NAME"
           echo "::add-mask::$DOCKER_PWD"
@@ -100,4 +104,4 @@ jobs:
         run: echo "TAG=$(echo ${GITHUB_REF:11})" >> $GITHUB_ENV
 
       - name: Send webhook for deploy
-        run: "curl --silent --show-error --fail -X POST $DEPLOYMENT_SERVER -H 'Authorization:$DEPLOYMENT_TOKEN' -H 'Content-Type: application/json' -d '{\"owner\": \"$DOCKER_LOGIN\", \"repository\": \"$DOCKER_NAME\", \"tag\": \"${{ env.TAG }}\", \"ports\": {\"5000\": 5000}}'"
+        run: "curl --silent --show-error --fail -X POST $DEPLOYMENT_SERVER -H 'Authorization: $DEPLOYMENT_TOKEN' -H 'Content-Type: application/json' -d '{\"owner\": \"$DOCKER_LOGIN\", \"repository\": \"$DOCKER_NAME\", \"tag\": \"${{ env.TAG }}\", \"ports\": {\"5000\": 5000}}'"
