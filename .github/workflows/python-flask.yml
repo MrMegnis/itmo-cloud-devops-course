@@ -48,7 +48,7 @@ jobs:
         run: docker push $LOGIN/$NAME:${GITHUB_REF:11}
   deploy:
     needs: [ publish ]
-    runs-on: [ ubuntu-latest ]
+    runs-on: ubuntu-20.04
     steps:
       - name: Set Tag
         run: echo "TAG=$(echo ${GITHUB_REF:11})" >> $GITHUB_ENV
