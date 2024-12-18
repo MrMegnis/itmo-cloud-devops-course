@@ -37,7 +37,7 @@ jobs:
 
       - name: Install Doppler CLI
         run: |
-          curl -Ls https://cli.doppler.com/install.sh | sh
+          curl -Ls https://cli.doppler.com/install.sh | sudo sh
 
       - name: Authenticate with Doppler
         run: doppler login --token ${{ secrets.DOPPLER_TOKEN }}
@@ -71,7 +71,7 @@ jobs:
 
       - name: Install Doppler CLI
         run: |
-          curl -Ls https://cli.doppler.com/install.sh | sh
+          curl -Ls https://cli.doppler.com/install.sh | sudo sh
 
       - name: Authenticate with Doppler
         run: doppler login --token ${{ secrets.DOPPLER_TOKEN }}
