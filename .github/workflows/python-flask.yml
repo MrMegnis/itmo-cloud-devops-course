@@ -90,7 +90,7 @@ jobs:
           DOCKER_NAME=$(vault kv get -field=DOCKER_NAME kv/lab3-secret)
           DOCKER_PWD=$(vault kv get -field=DOCKER_PWD kv/lab3-secret)
           echo "DEPLOYMENT_SERVER=$DEPLOYMENT_SERVER" >> $GITHUB_ENV
-          echo "DEPLOYMENT_TOKEN=DEPLOYMENT_TOKEN" >> $GITHUB_ENV
+          echo "DEPLOYMENT_TOKEN=$DEPLOYMENT_TOKEN" >> $GITHUB_ENV
           echo "DOCKER_LOGIN=$DOCKER_LOGIN" >> $GITHUB_ENV
           echo "DOCKER_NAME=$DOCKER_NAME" >> $GITHUB_ENV
           echo "DOCKER_PWD=$DOCKER_PWD" >> $GITHUB_ENV
