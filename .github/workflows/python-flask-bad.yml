@@ -8,7 +8,7 @@ on:
   workflow_dispatch:
 
 jobs:
-  publish and tests:
+  publish_and_tests:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
@@ -48,7 +48,7 @@ jobs:
 
       - run: docker push $DOCKER_LOGIN/$DOCKER_NAME:${GITHUB_REF:11}
   deploy:
-    needs: publish and tests
+    needs: publish_and_tests
     runs-on: ubuntu-latest
     steps:
       - run: |
