@@ -1,0 +1,51 @@
+IT Tower;Service Family;Service Type;Service Sub Type;Service Usage Type;Meter Category;Meter Sub-Category;Meter Name;Consumed Service
+;;;;;Data Services;;;
+;;;;;SQL Data Warehouse;Compute Optimized%;100 DWUs;Microsoft.Sql
+;;;;;Functions;;%Execution%;Microsoft.Web
+;;;;;Functions;;%Duration;Microsoft.Web
+;;;;;Insight and Analytics;;Data Included per Node;microsoft.operationalinsights
+;;;;;Insight and Analytics;;Data Overage per Node;microsoft.operationalinsights
+;;;;;Insight and Analytics;;Node;microsoft.operationalinsights
+;;;;;Key Vault;;;Microsoft.KeyVault
+;;;;;Integration;;;
+;;;;;Logic Apps;;;Microsoft.Logic
+;;;;;Machine Learning Service;Model Management;%Tier;Microsoft.MachineLearningModelManagement
+;;;;;Machine Learning Studio;;Standard Workspace fee;Microsoft.MachineLearning
+;;;;;Machine Learning Studio;;Standard Experiment Compute;Microsoft.MachineLearning
+;;;;;ML API Services;Text Analytics;Free;Microsoft.CognitiveServices
+;;;;;ML API Services;ML API Services;Standard Emotion API%;Microsoft.CognitiveServices
+;;;;;Mobile Services;Mobile Services;Free Mobile Services;
+;;;;;VPN Gateway;;%Gateway%;Microsoft.Network
+;;;;;VPN Gateway;;%Gw%;Microsoft.Network
+;;;;;VPN Gateway;;%Data Transfer%;Microsoft.Network
+;;;;;Traffic Manager;;%Azure Endpoint%;Microsoft.Network
+;;;;;Traffic Manager;;%Service Endpoint%;Microsoft.Network
+;;;;;Traffic Manager;;%DNS Queries%;Microsoft.Network
+;;;;;Traffic Manager;;%Real User Measurements;Microsoft.Network
+;;;;;Traffic Manager;;%Traffic View%;Microsoft.Network
+;;;;;Azure Firewall;;Deployment;Microsoft.Network
+;;;;;Azure Firewall;;Data Processed;Microsoft.Network
+;;;;;Azure Site Recovery;;VM _eplicated to Azure;Microsoft.RecoveryServices
+;;;;;Cognitive Services;QnA Maker;;Microsoft.CognitiveServices
+;;;;;SignalR;;;Microsoft.SignalRService
+;;;;;Event Grid;;Operations;
+;;;;;Windows Azure - All Services;All;Data Transfer Out%;Microsoft.Storage
+;;;;;Media Services;;;microsoft.media
+;;;;;IoT Hub;;;Microsoft.Devices
+;;;;;Virtual Machines;;;Microsoft.Batch
+;;;;;Virtual Machines;A Series Basic%;;%Compute
+;;;;;Virtual Machines;A%;;%Compute
+;;;;;Virtual Machines;B%;;%Compute
+;;;;;Virtual Machines;D%;D1/%;%Compute
+;;;;;Virtual Machines;D%;D1 %;%Compute
+;;;;;Virtual Machines;D%;D1%;%Compute
+;;;;;Virtual Machines;D%;D%;%Compute
+;;;;;Virtual Machines;E%;;%Compute
+;;;;;Virtual Machines;F%;;%Compute
+;;;;;Virtual Machines;Standard_F4 VM (Windows);Compute Hours;%Compute
+;;;;;Virtual Machines;G%;;%Compute
+;;;;;Virtual Machines;H%;;%Compute
+;;;;;Virtual Machines;L%;;%Compute
+;;;;;Virtual Machines;M%;;%Compute
+;;;;;Virtual Machines;N%;;%Compute
+;;;;;Virtual Machines;S%;;%Compute
