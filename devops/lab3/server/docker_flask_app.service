@@ -1,0 +1,16 @@
+[Unit]
+Description=Docker Flask App
+After=docker.service
+Requires=docker.service
+
+[Service]
+ExecStart=/snap/ci-cd-docker-pull/venv/bin/python3 /snap/ci-cd-docker-pull/main.py
+Restart=always
+User=root
+Environment=CI_TOKEN=Aboba
+WorkingDirectory=/snap/ci-cd-docker-pull
+StandardOutput=append:/var/log/docker_flask_app.log
+StandardError=append:/var/log/docker_flask_app_error.log
+
+[Install]
+WantedBy=multi-user.target
