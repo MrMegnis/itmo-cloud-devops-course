@@ -41,27 +41,19 @@ jobs:
     runs-on: ubuntu-20.04
     timeout-minutes: 10
     steps:
-      - name: Install Vault CLI
-        run: |
-          curl -fsSL https://apt.releases.hashicorp.com/gpg | gpg --dearmor > hashicorp.gpg
-          sudo install -o root -g root -m 644 hashicorp.gpg /usr/share/keyrings/hashicorp-archive-keyring.gpg
-          echo "deb [signed-by=/usr/share/keyrings/hashicorp-archive-keyring.gpg] https://apt.releases.hashicorp.com $(lsb_release -cs) main" | sudo tee /etc/apt/sources.list.d/hashicorp.list
-          sudo apt-get update && sudo apt-get install vault
-          
-      - name: Login to Vault
-        run: |
-          export VAULT_ADDR=${{ secrets.VAULT_SERVER }}
-          vault login -method=userpass username=${{ secrets.VAULT_LOGIN }} password=${{ secrets.VAULT_PWD }}
-          
-      - name: Fetch secrets from Vault
-        run: |
-          export VAULT_ADDR=${{ secrets.VAULT_SERVER }}
-          DOCKER_LOGIN=$(vault kv get -field=DOCKER_LOGIN kv/lab3-secret)
-          DOCKER_NAME=$(vault kv get -field=DOCKER_NAME kv/lab3-secret)
-          DOCKER_PWD=$(vault kv get -field=DOCKER_PWD kv/lab3-secret)
-          echo "DOCKER_LOGIN=$DOCKER_LOGIN" >> $GITHUB_ENV
-          echo "DOCKER_NAME=$DOCKER_NAME" >> $GITHUB_ENV
-          echo "DOCKER_PWD=$DOCKER_PWD" >> $GITHUB_ENV
+      - name: Vault Action - Fetch Secrets
+        uses: hashicorp/vault-action@v2
+        with:
+          url: ${{ secrets.VAULT_SERVER }}
+          method: userpass
+          username: ${{ secrets.VAULT_LOGIN }}
+          password: ${{ secrets.VAULT_PWD }}
+          secrets: |
+            kv/lab3-secret DOCKER_LOGIN
+            kv/lab3-secret DOCKER_NAME
+            kv/lab3-secret DOCKER_PWD
+        env:
+          VAULT_TOKEN: ${{ secrets.VAULT_TOKEN }}
 
       - name: Login
         run: echo $DOCKER_PWD | docker login -u $DOCKER_LOGIN --password-stdin
