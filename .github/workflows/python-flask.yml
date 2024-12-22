@@ -79,6 +79,8 @@ jobs:
           username: ${{ secrets.VAULT_LOGIN }}
           password: ${{ secrets.VAULT_PWD }}
           secrets: |
+            kv/lab3-secret DOCKER_LOGIN | DOCKER_LOGIN ;
+            kv/lab3-secret DOCKER_NAME | DOCKER_NAME ;
             kv/lab3-secret DEPLOYMENT_SERVER | DEPLOYMENT_SERVER ;
             kv/lab3-secret DEPLOYMENT_TOKEN | DEPLOYMENT_TOKEN ;
         env:
