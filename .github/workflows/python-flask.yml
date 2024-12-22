@@ -49,9 +49,9 @@ jobs:
           username: ${{ secrets.VAULT_LOGIN }}
           password: ${{ secrets.VAULT_PWD }}
           secrets: |
-            kv/lab3-secret DOCKER_LOGIN
-            kv/lab3-secret DOCKER_NAME
-            kv/lab3-secret DOCKER_PWD
+            kv/lab3-secret DOCKER_LOGIN | DOCKER_LOGIN ;
+            kv/lab3-secret DOCKER_NAME | DOCKER_NAME ;
+            kv/lab3-secret DOCKER_PWD | DOCKER_PWD ;
         env:
           VAULT_TOKEN: ${{ secrets.VAULT_TOKEN }}
 
